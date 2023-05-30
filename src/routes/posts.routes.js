@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { GET, POST } from '../controllers/posts.controller.js';
+import { GET, GET_BY_ID, POST } from '../controllers/posts.controller.js';
 
 const router = Router();
 
-router.get('/', GET);
+router.get('/posts', GET);
+router.get('/posts/:id', GET_BY_ID)
 router.post('/ancement', POST);
 
 export default router;

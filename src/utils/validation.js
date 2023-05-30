@@ -11,12 +11,9 @@ export const PostSchema = Joi.object({
 	post_date: Joi.string().required(),
 	post_time: Joi.string().required(),
 	post_image: Joi.string().required(),
-
 	post_type: Joi.string().required(),
-
 	post_link: Joi.string().required(),
 	author_id: Joi.number().required(),
 	post_count: Joi.number().required(),
-    post_count: Joi.number().required(),
-
+	post_status: Joi.string().required(),
 });

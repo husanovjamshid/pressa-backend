@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import indexRoutes from './routes/index.routes.js';
 import 'dotenv/config';
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 9090;
 
 const app = express();
 

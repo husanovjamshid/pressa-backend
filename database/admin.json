@@ -1,7 +1,7 @@
 [
 	{
-		"admin_id": 1,
-		"admin_username": "khusanoff",
-		"admin_password": "olma"
+		"id": 1,
+		"username": "khusanoff",
+		"password": "olma"
 	}
 ]
