@@ -68,7 +68,7 @@ export const POST = (req, res, next) => {
 		author_number,
 		author_role,
 	};
-	
+
 	const newPost = {
 		post_id: posts.at(-1)?.post_id + 1 || 1,
 		post_title,
@@ -87,5 +87,8 @@ export const POST = (req, res, next) => {
 
 	write('posts', [...posts, newPost]);
 	write('author', [...authors, newAuthor]);
-	res.send('uploads');
+
+	res.status(201).json({ status: 201, message: 'ok' });
+
+	
 };
