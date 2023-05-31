@@ -12,6 +12,8 @@ const storage = multer.diskStorage({
 			file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname),
 		);
 	},
+
+	
 });
 
 const upload = multer({ storage: storage });

@@ -88,7 +88,7 @@ export const POST = (req, res, next) => {
 	write('posts', [...posts, newPost]);
 	write('author', [...authors, newAuthor]);
 
-	res.status(201).json({ status: 201, message: 'ok' });
-
-	
+	res
+		.status(201)
+		.json({ status: 201, message: 'ok', data: [...posts, newPost] });
 };
