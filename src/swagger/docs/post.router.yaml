@@ -1,0 +1,116 @@
+/posts:
+  get:
+    tags:
+      - Posts
+    summary: Finds posters by query
+    operationId: findPostsByPage
+    parameters:
+      - name: page
+        in: query
+        description: page query
+        required: false
+        explode: true
+        schema:
+          type: integer
+          default: 1
+          format: integer
+      - name: poster_title
+        in: query
+        description: poster_title query
+        required: false
+        explode: true
+        schema:
+          type: string
+      - name: poster_event_type
+        in: query
+        description: poster_event_type query
+        required: false
+        explode: true
+        schema:
+          type: string
+      - name: sub_category_id
+        in: query
+        description: sub_category_id query
+        required: false
+        explode: true
+        schema:
+          type: integer
+      - name: author_id
+        in: query
+        description: author_id query
+        required: false
+        explode: true
+        schema:
+          type: integer
+      - name: poster_views
+        in: query
+        description: poster_views query
+        required: false
+        explode: true
+        schema:
+          type: integer
+
+    responses:
+    200:
+      description: Get all posters successfully
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PostStatus"
+    400:
+      description: Poster create bad request response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PosterResponse"
+
+/poster/{id}:
+  get:
+    tags:
+      - Posts
+    summary: Poster get by id
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: number
+    responses:
+      200:
+        description: post successfully
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostStatusResponse"
+      400:
+        description: Post create
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostBadResponse"
+
+/poster:
+  post:
+    tags:
+      - Posts
+    security:
+      - Bearer: []
+    summary: Admin poster create
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/schemas/Poster"
+
+    responses:
+      201:
+        description: Poster create successfully
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PosterStatusResponse"
+      400:
+        description: Poster create bad request response
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PosterBadResponse"
