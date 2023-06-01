@@ -43,7 +43,7 @@ export const GET = (req, res, next) => {
 			data: verifyPosts,
 		});
 	} else {
-		const verifyPosts = filteredPost
+		const verifyPosts = posts
 			.filter((post) => post.post_status == true)
 			.slice((page - 1) * limit, page * limit);
 		res.status(200).json({
