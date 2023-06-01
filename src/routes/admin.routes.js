@@ -7,6 +7,6 @@ const router = Router();
 
 router.post('/login', validate, LOGIN);
 router.get('/admin',checkToken, GET)
-router.patch('/admin/:id', PATCH)
+router.patch('/admin/:id',checkToken, PATCH)
 
 export default router;

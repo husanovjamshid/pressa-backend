@@ -1,23 +1,24 @@
 import { hashPassword, write, read } from '../utils/model.js';
 import { resolve } from 'path';
 import jwt from '../utils/jwt.js';
+import { pagination } from '../utils/pagination.js';
 
 export const LOGIN = (req, res, next) => {
 	try {
 		const admins = read('admin');
 		const { username, password } = req.body;
 
+		const hash_password = hashPassword(password);
 		const admin = admins.find(
-			(admin) => admin.username == username && admin.password == password,
+			(admin) => admin.username == username && admin.password == hash_password,
 		);
 
+		delete admin.token
 		delete admin.password;
 
 		if (!admin) {
 			throw new Error('wrong username or password');
 		}
-
-		// write('admin', )
 
 		res.status(200).json({
 			status: 200,
@@ -36,6 +37,10 @@ export const GET = (req, res, next) => {
 	const category = read('category');
 	const subCategory = read('subCategory');
 
+	let { page } = req.query;
+	page = page || pagination.page;
+	const limit = pagination.limit;
+
 	posts.map((post) => {
 		post.author = authors.filter(
 			(author_item) => post.author_id == author_item.author_id,
@@ -48,8 +53,11 @@ export const GET = (req, res, next) => {
 				post.sub_category_id == subCategory_item.sub_category_id,
 		);
 	});
+	const verifyPosts = posts
+		.filter((post) => post.post_status == false)
+		.slice((page - 1) * limit, page * limit);
 
-	res.status(200).json({ status: 200, data: posts });
+	res.status(200).json({ status: 200, page: page, data: verifyPosts });
 };
 
 export const PATCH = (req, res, next) => {
@@ -67,5 +75,10 @@ export const PATCH = (req, res, next) => {
 
 	write('posts', posts);
 
-	res.status(200).json({ status: 200, data: posts });
+	if (post_status == false) {
+		const newPosts = posts.filter((item) => item.post_id != id);
+		write('posts', newPosts);
+	}
+
+	res.status(200).json({ status: 200, message: 'Post changed' });
 };

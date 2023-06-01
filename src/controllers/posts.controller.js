@@ -1,12 +1,15 @@
-import { hashPassword, write, read } from '../utils/model.js';
-import { resolve } from 'path';
-import upload from '../utils/multer.js';
+import { write, read } from '../utils/model.js';
+import { pagination } from '../utils/pagination.js';
 
 export const GET = (req, res, next) => {
 	const posts = read('posts');
 	const authors = read('author');
 	const category = read('category');
 	const subCategory = read('subCategory');
+
+	let { page, post_type, post_date, post_time } = req.query;
+	page = page || pagination.page;
+	const limit = pagination.limit;
 
 	posts.map((post) => {
 		post.author = authors.filter(
@@ -21,9 +24,34 @@ export const GET = (req, res, next) => {
 		);
 	});
 
-	const verifyPosts = posts.filter((post) => post.post_status == 'complated');
+	if (post_type || post_date || post_time) {
+		const filteredPost = posts.filter((item) => {
+			return (
+				item.post_type == post_type ||
+				item.post_date == post_date ||
+				item.post_time == post_time
+			);
+		});
 
-	res.status(200).json({ status: 200, data: verifyPosts });
+		const verifyPosts = filteredPost
+			.filter((post) => post.post_status == true)
+			.slice((page - 1) * limit, page * limit);
+
+		res.status(200).json({
+			status: 200,
+			page: +page,
+			data: verifyPosts,
+		});
+	} else {
+		const verifyPosts = filteredPost
+			.filter((post) => post.post_status == true)
+			.slice((page - 1) * limit, page * limit);
+		res.status(200).json({
+			status: 200,
+			page: +page,
+			data: verifyPosts,
+		});
+	}
 };
 
 export const GET_BY_ID = (req, res, next) => {
