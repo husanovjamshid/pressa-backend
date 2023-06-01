@@ -21,7 +21,9 @@ export const GET = (req, res, next) => {
 		);
 	});
 
-	res.status(200).json({ status: 200, data: posts });
+	const verifyPosts = posts.filter((post) => post.post_status == 'complated');
+
+	res.status(200).json({ status: 200, data: verifyPosts });
 };
 
 export const GET_BY_ID = (req, res, next) => {

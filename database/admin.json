@@ -2,6 +2,7 @@
 	{
 		"id": 1,
 		"username": "khusanoff",
-		"password": "olma"
+		"password": "olma",
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg1NTYwNDM2fQ.1d4x7TdZpuc8ufPUIOrFKbL79NZG3-5U-bwxoMIuKWk"
 	}
 ]

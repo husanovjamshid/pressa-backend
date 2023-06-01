@@ -42,7 +42,7 @@
         "post_view_count": 169,
         "category_id": 2,
         "sub_category_id": 4,
-        "post_status": "uncomplated"
+        "post_status": "complated"
     },
     {
         "post_id": 4,
@@ -57,7 +57,7 @@
         "post_view_count": 154,
         "category_id": 4,
         "sub_category_id": 8,
-        "post_status": "uncomplated"
+        "post_status": "complated"
     },
     {
         "post_id": 5,
@@ -72,7 +72,7 @@
         "post_view_count": 0,
         "category_id": 3,
         "sub_category_id": 5,
-        "post_status": "uncomplated"
+        "post_status": "complated"
     },
     {
         "post_id": 6,
@@ -87,7 +87,7 @@
         "post_view_count": 0,
         "category_id": 2,
         "sub_category_id": 3,
-        "post_status": "uncomplated"
+        "post_status": "complated"
     },
     {
         "post_id": 7,
