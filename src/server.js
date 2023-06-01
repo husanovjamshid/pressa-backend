@@ -3,8 +3,9 @@ import cors from 'cors';
 import { resolve } from 'path';
 import indexRoutes from './routes/index.routes.js';
 import swaggerRoute from './utils/swagger.js'
-const PORT = process.env.PORT || 9090;
 import 'dotenv/config';
+
+const PORT = process.env.PORT || 9090;
 const app = express();
 
 app.use(express.json());

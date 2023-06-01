@@ -10,24 +10,15 @@ const swaggerDoc = swaggerJSDoc({
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "pressa",
-      description: "pressa master class posters",
+      title: "pressa backend",
+      description: "pressa servers",
     },
     servers: [
       {
         url: `http://localhost:${PORT}`,
       },
     ],
-    components: {
-      securitySchemes: {
-        Bearer: {
-          type: "apiKey",
-          name: "token",
-          in: "header",
-          description: "Please use login api to get access_token",
-        },
-      },
-    },
+   
   },
   apis: [
     `${process.cwd()}/src/swagger/components/*.yaml`,
